@@ -36,8 +36,7 @@ module.exports = {
 
             User.create(userData)
                 .then(user => {
-                    req.session.userId = user._id;
-                    return res.redirect('/api/profile');
+                    res.send({ userId: user._id });
                 });
     
             
@@ -48,8 +47,7 @@ module.exports = {
                   err.status = 401;
                   return next(err);
                 } else {
-                  req.session.userId = user._id;
-                  return res.redirect('/api/profile');
+                    res.send({ userId: user._id });
                 }
               });
         } else {
@@ -60,7 +58,7 @@ module.exports = {
     },
 
     Profile(req, res, next) {
-        User.findById(req.session.userId)
+        User.findById(req.body.userId)
             .then((user) => {
                 const sendUser = {
                     id: user._id,
@@ -77,7 +75,7 @@ module.exports = {
     Logout(req, res, next) {
         if (req.session) {
             req.session.destroy((err) => {
-                if (err){
+                if (err) {
                     return next(err);
                 } else {
                     return res.redirect('/api/');

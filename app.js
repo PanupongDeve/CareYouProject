@@ -19,16 +19,6 @@ db.once('open', () =>{
     console.log('Conect Database Success');
 });
 
-//user sessions for tracking logins
-app.use(session({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-        mongooseConnection: db
-    })
-}));
-
 //ติดตั้ง json middleware by bodyParser.json
 app.use(bodyParser.json());
 

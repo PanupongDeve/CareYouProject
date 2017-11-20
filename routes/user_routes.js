@@ -9,6 +9,6 @@ module.exports = (app) => {
     app.get('/api/', UserController.RegisterOrLogin);
     app.post('/api/', LoggedMiddleware, UserController.CreateOrAuthen);
     app.get('/api/logout', LoginMiddleware, UserController.Logout);
-    app.get('/api/profile', LoginMiddleware, UserController.Profile);
+    app.post('/api/profile', LoginMiddleware, UserController.Profile);
    
 };

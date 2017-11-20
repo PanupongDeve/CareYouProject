@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 module.exports = {
     RegisterOrLogin(req, res) {
-      res.send('Welcome to Page');
+      res.send({ hello: 'Welcom to Page' });
     },
 
     CreateOrAuthen(req, res, next) {

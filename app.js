@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const cors = require('cors');
 
 const UserRoutes = require('./routes/user_routes');
 const app = express();
-
+app.use(cors());
 //ติดต่อ Database
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/Careyou');
